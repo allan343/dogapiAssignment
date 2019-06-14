@@ -31,7 +31,13 @@ function watchForm() {
   $('form').submit(event => {
     Count=$('.dog-number').val();
     event.preventDefault();
+    if(Count<=50 && Count>0 )
+    {
     getDogImages(Count);
+    }
+    else{
+        alert('you cannot request more than 50 images')
+    }
   });
 }
 
