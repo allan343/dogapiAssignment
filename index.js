@@ -6,23 +6,27 @@ var dogCount = 0;
 
 function getDogImages(Count) {
     console.log(Count);
-    for(let i=0; i<Count; i++)
-    {
-  fetch('https://dog.ceo/api/breeds/image/random')
+  
+    let url = 'https://dog.ceo/api/breeds/image/random/' + Count;
+    console.log(url);
+  fetch(url)
     .then(response => response.json())
     .then(responseJson => 
       displayResults(responseJson))
     .catch(error => alert('Something went wrong. Try again later.'));
-    }
+    
 }
 
 function displayResults(responseJson) {
   console.log(responseJson);
   //replace the existing image with the new one
+  for(let i =0; i< responseJson.message.length;i++)
+  {
   $('.results-img').append(
-    `<img src="${responseJson.message}" class="results-img">`
+    `<img src="${responseJson.message[i]}" class="results-img">`
   )
   //display the results section
+  }
   $('.results').removeClass('hidden');
 }
 
