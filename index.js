@@ -13,20 +13,28 @@ function getDogImages(Count) {
     .then(response => response.json())
     .then(responseJson => 
       displayResults(responseJson))
-    .catch(error => alert('Something went wrong. Try again later.'));
+    .catch(error =>{
+
+      console.log(error.message);
+      alert('Something went wrong. Try again later.');
+    } 
+    )
     
 }
 
 function displayResults(responseJson) {
   console.log(responseJson);
+  let image="";
   //replace the existing image with the new one
   for(let i =0; i< responseJson.message.length;i++)
   {
-  $('.results-img').append(
-    `<img src="${responseJson.message[i]}" class="results-img">`
-  )
+    image += `<img src="${responseJson.message[i]}" class="results-img">`;
+  
   //display the results section
   }
+  $('.results-img').html(
+    image
+   );
   $('.results').removeClass('hidden');
 }
 
